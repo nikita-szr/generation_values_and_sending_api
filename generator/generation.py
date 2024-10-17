@@ -8,12 +8,18 @@ from datetime import datetime, timedelta
 def load_generated_values(file_path='generated_values.json'):
     """Загружает ранее сгенерированные значения из файла."""
     if os.path.exists(file_path):
-        with open(file_path, 'r') as f:
-            data = json.load(f)
-            last_generated_date = datetime.strptime(data['date'], '%Y-%m-%d')
-            if datetime.now() - last_generated_date > timedelta(weeks=1):
-                return set()
-            return set(data['values'])
+        if os.path.getsize(file_path) > 0:
+            with open(file_path, 'r') as f:
+                try:
+                    data = json.load(f)
+                    last_generated_date = datetime.strptime(data['date'], '%Y-%m-%d')
+                    if datetime.now() - last_generated_date > timedelta(weeks=1):
+                        return set()
+                    return set(data['values'])
+                except json.JSONDecodeError:
+                    return set()
+        else:
+            return set()
     return set()
 
 
