@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 
 
 def load_generated_values(file_path='generated_values.json'):
-    """Загружает ранее сгенерированные значения из файла."""
+    """Загружает ранее сгенерированные значения из файла"""
     if os.path.exists(file_path):
         if os.path.getsize(file_path) > 0:
             with open(file_path, 'r') as f:
@@ -24,7 +24,7 @@ def load_generated_values(file_path='generated_values.json'):
 
 
 def save_generated_values(values, file_path='generated_values.json'):
-    """Сохраняет сгенерированные значения в файл вместе с текущей датой."""
+    """Сохраняет сгенерированные значения в файл вместе с текущей датой"""
     data = {
         'date': datetime.now().strftime('%Y-%m-%d'),
         'values': list(values)
@@ -34,7 +34,7 @@ def save_generated_values(values, file_path='generated_values.json'):
 
 
 def generate_values():
-    """Генерирует 10 уникальных чисел от 7 до 10 символов, избегая дубликатов за неделю."""
+    """Генерирует 10 уникальных чисел от 7 до 10 символов, избегая дубликатов за неделю"""
     generated_values = load_generated_values()
     new_values = set()
 
@@ -44,5 +44,6 @@ def generate_values():
             new_values.add(value)
             generated_values.add(value)
 
-    save_generated_values(generated_values)
-    return '\n'.join(new_values)
+    # Сохраняем новые значения
+    save_generated_values(new_values)
+    return list(new_values)
