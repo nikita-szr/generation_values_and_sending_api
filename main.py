@@ -13,6 +13,7 @@ def load_config(config_path='config.json'):
 
 # Основная функция
 def main():
+    """Запускает проект"""
     # Логирование
     setup_logging()
 
