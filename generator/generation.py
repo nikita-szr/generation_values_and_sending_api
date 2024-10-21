@@ -33,17 +33,18 @@ def save_generated_values(values, file_path='generated_values.json'):
         json.dump(data, f)
 
 
-def generate_values():
-    """Генерирует 10 уникальных чисел от 7 до 10 символов, избегая дубликатов за неделю"""
+def generate_values(number_of_values):
+    """Генерирует указанное количество уникальных чисел от 7 до 10 символов."""
     generated_values = load_generated_values()
     new_values = set()
 
-    while len(new_values) < 10:
+    # Генерация указанного количества уникальных чисел
+    while len(new_values) < number_of_values:
         value = ''.join(random.choices(string.digits, k=random.randint(7, 10)))
         if value not in generated_values:
             new_values.add(value)
             generated_values.add(value)
 
     # Сохраняем новые значения
-    save_generated_values(new_values)
+    save_generated_values(generated_values)
     return list(new_values)

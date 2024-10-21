@@ -13,7 +13,6 @@ def load_config(config_path='config.json'):
 
 # Основная функция
 def main():
-    """Запускает проект"""
     # Логирование
     setup_logging()
 
@@ -22,13 +21,14 @@ def main():
     api_url = config['api_url']
     token = config['token']
     id = config['id']
+    number_of_values = config['number_of_values']  # Читаем количество значений
 
     # Планировщик
     scheduler = BlockingScheduler()
 
     # Настройка расписания выполнения задачи
     scheduler.add_job(schedule_task, 'interval', weeks=1,
-                      args=[api_url, token, id],
+                      args=[api_url, token, id, number_of_values],
                       next_run_time=config['next_run_time'])
 
     logging.info("Скрипт запущен и ждет выполнения.")

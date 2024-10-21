@@ -1,6 +1,7 @@
 {
   "api_url": "https://backapi.admy.com/api/v1/advertiser/dsp/{id}/update?token={token}",
-  "token": "your_token_here",
-  "id": "your_id_here",
-  "next_run_time": "2024-10-24 10:00:00"
+  "token": "f116e15b-73dd-4656-a2f2-7134e2d48dfb",
+  "id": "17901",
+  "next_run_time": "2024-10-17 23:07:00",
+  "number_of_values": 10
 }
